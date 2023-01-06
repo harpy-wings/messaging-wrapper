@@ -8,13 +8,16 @@ type Messenger interface {
 	NewConsumer(ops ...ConsumerOption) (Consumer, error)
 
 	// TODO - add proper comments.
-	NewProducer() (Producer, error)
+	NewProducer(ops ...ProducerOption) (Producer, error)
 
 	// TODO - add proper comments.
 	NewExchange(ops ...ExchangeOption) (Exchange, error)
 
 	// TODO - add proper comments.
 	NewQueue(ops ...QueueOption) (Queue, error)
+
+	//CancelConsumers stops deliveries to all consumers established.
+	CancelConsumers() error
 
 	// GracefulShutdown shutdowns the Messenger.
 	GracefulShutdown() error
