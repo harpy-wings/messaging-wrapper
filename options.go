@@ -4,8 +4,10 @@ import (
 	"reflect"
 )
 
+// TODO - add proper comments.
 type BindOption func(interface{}) error
 
+// TODO - add proper comments.
 func BindOptionWithArgs(v map[string]interface{}) BindOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -29,6 +31,7 @@ func BindOptionWithArgs(v map[string]interface{}) BindOption {
 	}
 }
 
+// TODO - add proper comments.
 func BindOptionWithNoWait(b bool) BindOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -52,8 +55,10 @@ func BindOptionWithNoWait(b bool) BindOption {
 	}
 }
 
+// TODO - add proper comments.
 type ConsumerOption func(interface{}) error
 
+// TODO - add proper comments.
 func ConsumerOptionWithQueue(v Queue) ConsumerOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -77,6 +82,7 @@ func ConsumerOptionWithQueue(v Queue) ConsumerOption {
 	}
 }
 
+// TODO - add proper comments.
 func ConsumerOptionWithName(v string) ConsumerOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -100,6 +106,7 @@ func ConsumerOptionWithName(v string) ConsumerOption {
 	}
 }
 
+// TODO - add proper comments.
 func ConsumerOptionWithExclusive(v bool) ConsumerOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -122,6 +129,8 @@ func ConsumerOptionWithExclusive(v bool) ConsumerOption {
 		return nil
 	}
 }
+
+// TODO - add proper comments.
 func ConsumerOptionWithArgs(v map[string]interface{}) ConsumerOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -145,8 +154,10 @@ func ConsumerOptionWithArgs(v map[string]interface{}) ConsumerOption {
 	}
 }
 
+// TODO - add proper comments.
 type ExchangeOption func(interface{}) error
 
+// TODO - add proper comments.
 func ExchangeOptionWithName(v string) ExchangeOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -169,6 +180,8 @@ func ExchangeOptionWithName(v string) ExchangeOption {
 		return nil
 	}
 }
+
+// TODO - add proper comments.
 func ExchangeOptionWithType(v ExchangeType) ExchangeOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -307,10 +320,13 @@ func ExchangeOptionPassive(v bool) ExchangeOption {
 	}
 }
 
+// TODO - add proper comments.
 type QueueOption func(interface{}) error
 
+// TODO - add proper comments.
 type ProducerOption func(interface{}) error
 
+// TODO - add proper comments.
 func ProducerOptionOnError(v func(Message)) ProducerOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -334,6 +350,7 @@ func ProducerOptionOnError(v func(Message)) ProducerOption {
 	}
 }
 
+// TODO - add proper comments.
 func ProducerOptionWithRetry(v int) ProducerOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
@@ -357,6 +374,7 @@ func ProducerOptionWithRetry(v int) ProducerOption {
 	}
 }
 
+// TODO - add proper comments.
 func ProducerOptionWithExchange(v Exchange) ProducerOption {
 	return func(vc interface{}) error {
 		V := reflect.ValueOf(vc)
