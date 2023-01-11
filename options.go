@@ -323,6 +323,117 @@ func ExchangeOptionPassive(v bool) ExchangeOption {
 // TODO - add proper comments.
 type QueueOption func(interface{}) error
 
+func QueueOptionWithArgs(v map[string]interface{}) QueueOption {
+	return func(vc interface{}) error {
+		V := reflect.ValueOf(vc)
+		if V.Kind() != reflect.Pointer {
+			return ErrorNotPointer(reflect.ValueOf(vc).Kind())
+		}
+
+		CV := V.Elem().FieldByName("Config")
+		if CV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String(), "Config")
+		}
+		VCV := CV.FieldByName("Args")
+		if VCV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String()+".Config", "Args")
+		}
+		if VCV.Type() != reflect.TypeOf(v) {
+			return ErrorMismatchType(V.Elem().Kind().String()+".Config.Args", reflect.TypeOf(v), VCV.Type())
+		}
+		VCV.Set(reflect.ValueOf(v))
+		return nil
+	}
+}
+func QueueOptionWithNoWait(v bool) QueueOption {
+	return func(vc interface{}) error {
+		V := reflect.ValueOf(vc)
+		if V.Kind() != reflect.Pointer {
+			return ErrorNotPointer(reflect.ValueOf(vc).Kind())
+		}
+
+		CV := V.Elem().FieldByName("Config")
+		if CV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String(), "Config")
+		}
+		VCV := CV.FieldByName("NoWait")
+		if VCV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String()+".Config", "NoWait")
+		}
+		if VCV.Type() != reflect.TypeOf(v) {
+			return ErrorMismatchType(V.Elem().Kind().String()+".Config.NoWait", reflect.TypeOf(v), VCV.Type())
+		}
+		VCV.Set(reflect.ValueOf(v))
+		return nil
+	}
+}
+func QueueOptionDurable(v bool) QueueOption {
+	return func(vc interface{}) error {
+		V := reflect.ValueOf(vc)
+		if V.Kind() != reflect.Pointer {
+			return ErrorNotPointer(reflect.ValueOf(vc).Kind())
+		}
+
+		CV := V.Elem().FieldByName("Config")
+		if CV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String(), "Config")
+		}
+		VCV := CV.FieldByName("Durable")
+		if VCV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String()+".Config", "Durable")
+		}
+		if VCV.Type() != reflect.TypeOf(v) {
+			return ErrorMismatchType(V.Elem().Kind().String()+".Config.Durable", reflect.TypeOf(v), VCV.Type())
+		}
+		VCV.Set(reflect.ValueOf(v))
+		return nil
+	}
+}
+func QueueOptionAutoDelete(v bool) QueueOption {
+	return func(vc interface{}) error {
+		V := reflect.ValueOf(vc)
+		if V.Kind() != reflect.Pointer {
+			return ErrorNotPointer(reflect.ValueOf(vc).Kind())
+		}
+
+		CV := V.Elem().FieldByName("Config")
+		if CV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String(), "Config")
+		}
+		VCV := CV.FieldByName("AutoDelete")
+		if VCV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String()+".Config", "AutoDelete")
+		}
+		if VCV.Type() != reflect.TypeOf(v) {
+			return ErrorMismatchType(V.Elem().Kind().String()+".Config.AutoDelete", reflect.TypeOf(v), VCV.Type())
+		}
+		VCV.Set(reflect.ValueOf(v))
+		return nil
+	}
+}
+func QueueExclusive(v bool) QueueOption {
+	return func(vc interface{}) error {
+		V := reflect.ValueOf(vc)
+		if V.Kind() != reflect.Pointer {
+			return ErrorNotPointer(reflect.ValueOf(vc).Kind())
+		}
+
+		CV := V.Elem().FieldByName("Config")
+		if CV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String(), "Config")
+		}
+		VCV := CV.FieldByName("Exclusive")
+		if VCV.Kind() == reflect.Invalid {
+			return ErrorMissingFiled(V.Elem().Kind().String()+".Config", "Exclusive")
+		}
+		if VCV.Type() != reflect.TypeOf(v) {
+			return ErrorMismatchType(V.Elem().Kind().String()+".Config.Exclusive", reflect.TypeOf(v), VCV.Type())
+		}
+		VCV.Set(reflect.ValueOf(v))
+		return nil
+	}
+}
+
 // TODO - add proper comments.
 type ProducerOption func(interface{}) error
 

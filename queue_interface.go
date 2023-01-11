@@ -24,10 +24,10 @@ type Queue interface {
 	Purge() (int, error)
 
 	// number of consumers receiving deliveries
-	Consumers() int
+	Consumers() (int, error)
 
 	// count of messages not awaiting acknowledgment
-	Messages() int
+	Messages() (int, error)
 
 	// server confirmed or generated name
 	Name() string

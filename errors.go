@@ -15,4 +15,7 @@ var (
 	ErrorMismatchType = func(base string, expected, got reflect.Type) error {
 		return fmt.Errorf("base %s has a wrong type, expected %s got %s", base, expected, got)
 	}
+
+	ErrorNotFound = func(args ...interface{}) error { return fmt.Errorf("item not found %v", args) }
+	
 )
